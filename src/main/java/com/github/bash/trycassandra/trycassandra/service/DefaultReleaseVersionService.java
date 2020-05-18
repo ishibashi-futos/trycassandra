@@ -1,19 +1,19 @@
 package com.github.bash.trycassandra.trycassandra.service;
 
 import com.github.bash.trycassandra.trycassandra.dao.ReleaseVersionDao;
-import com.github.bash.trycassandra.trycassandra.fw.ConnectionConfig;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DefaultReleaseVersionService implements ReleaseVersionService {
-    public DefaultReleaseVersionService() {
-
+    private final ReleaseVersionDao dao;
+    public DefaultReleaseVersionService(final ReleaseVersionDao dao) {
+        this.dao = dao;
     }
 
     @Override
     public String getReleaseVersion() {
-        try (ReleaseVersionDao dao = new ReleaseVersionDao(ConnectionConfig.getSession())) {
-            return dao.getReleaseVersion();
-        }
+        var version = this.dao.getReleaseVersion();
+        dao.close();
+        return version;
     }
 }

@@ -4,10 +4,13 @@ import com.datastax.oss.driver.api.core.CqlSession;
 import com.github.bash.trycassandra.trycassandra.fw.CassandraDao;
 
 import com.datastax.oss.driver.api.core.cql.ResultSet;
+import com.github.bash.trycassandra.trycassandra.fw.ConnectionConfig;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ReleaseVersionDao extends CassandraDao {
-    public ReleaseVersionDao(final CqlSession session) {
-        super(session);
+    public ReleaseVersionDao(final ConnectionConfig connectionConfig) {
+        super(connectionConfig.getSession());
     }
 
     public String getReleaseVersion() {

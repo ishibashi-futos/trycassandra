@@ -5,15 +5,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DefaultReleaseVersionService implements ReleaseVersionService {
-    private final ReleaseVersionDao dao;
-    public DefaultReleaseVersionService(final ReleaseVersionDao dao) {
-        this.dao = dao;
-    }
+  private final ReleaseVersionDao dao;
 
-    @Override
-    public String getReleaseVersion() {
-        var version = this.dao.getReleaseVersion();
-        dao.close();
-        return version;
-    }
+  public DefaultReleaseVersionService(final ReleaseVersionDao dao) {
+    this.dao = dao;
+  }
+
+  @Override
+  public String getReleaseVersion() {
+    var version = this.dao.getReleaseVersion();
+    dao.close();
+    return version;
+  }
 }

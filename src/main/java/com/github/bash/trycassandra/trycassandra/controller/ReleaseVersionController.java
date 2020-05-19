@@ -5,18 +5,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.net.http.HttpRequest;
-
 @RestController
 @RequestMapping("/versions")
 public class ReleaseVersionController {
-    ReleaseVersionService service;
-    public ReleaseVersionController(final ReleaseVersionService service) {
-        this.service = service;
-    }
+  ReleaseVersionService service;
 
-    @GetMapping(value = "cassandra")
-    public String cassandraVersion() {
-        return service.getReleaseVersion();
-    }
+  public ReleaseVersionController(final ReleaseVersionService service) {
+    this.service = service;
+  }
+
+  @GetMapping(value = "cassandra")
+  public String cassandraVersion() {
+    return service.getReleaseVersion();
+  }
 }

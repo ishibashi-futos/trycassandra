@@ -5,11 +5,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ConnectionConfig {
-  private static CqlSession get() {
-    return CqlSession.builder().withAuthCredentials("user", "pass").build();
+  private static CqlSession get(String keyspace) {
+    return CqlSession.builder()
+      .withAuthCredentials("user", "pass").withKeyspace(keyspace).build();
   }
 
-  public CqlSession getSession() {
-    return ConnectionConfig.get();
+  public CqlSession getCqlSession() {
+    return ConnectionConfig.get("cqldemo");
   }
 }

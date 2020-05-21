@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ReleaseVersionDao extends CassandraDao {
   public ReleaseVersionDao(final ConnectionConfig connectionConfig) {
-    super(connectionConfig.getSession());
+    super(connectionConfig.getCqlSession());
   }
 
   public String getReleaseVersion() {
